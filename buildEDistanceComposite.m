@@ -12,7 +12,6 @@ function eDistanceBlock = buildEDistanceComposite(imblock, histValues, imageSet,
     normHistB = histB ./ sum(histB(:)); % normalisation
         
     for i = 1 : length(histValues)
-        
         imageHist = cell2mat(histValues(i));
         
         rDistance(:,i) = sum((normHistR-imageHist(:,1)).^2);
