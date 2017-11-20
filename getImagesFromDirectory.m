@@ -1,6 +1,8 @@
 function [images, labels ] = getImagesFromDirectory(directoryName, imgType)
 
-directory = dir('/Users/glen/Desktop/Training Set');
+disp('collecting training data');
+
+directory = dir(directoryName);
 dirFlags = [directory.isdir];
 subFolders = directory(dirFlags);
 
