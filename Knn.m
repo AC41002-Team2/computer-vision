@@ -5,27 +5,28 @@ function label = Knn(testData, trainingData, k, labels)
     v1 = [cell2mat(trainingData(:, 1)), cell2mat(trainingData(:, 2))];
     v2 = [cell2mat(testData(1, 1)), cell2mat(testData(1, 2))];
     
-    distData = [];
-    distIndex = [];
+    dataLength = numel(v1(:, 1));
+    distData = zeros(dataLength);
+    
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Calculate distance between test vector and all training
     % vectors
-    for i = 1 : numel(v1(:, 1))
+    for i = 1 : dataLength
         
         currectVector = [v1(i, 1), v1(i, 2)];
         
         % Euclidean Distance
         dist  = sqrt(sum((v2 - currectVector) .^ 2));
         
-        distData = [distData round(dist, 1)];
+        distData(i) = dist;
             
     end
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Sort all vectors in ascending order to get the closest ones
     % Keep previous index so we can use it to get relevant labels
-    [sorted, unsorted] = sort(distData , 'ascend');
+    [~, unsorted] = sort(distData , 'ascend');
     
     nearestLabels = cell(k, 1);
     

@@ -1,11 +1,15 @@
 function data = collectKnnData(imageSet)
 
+    disp('collecting data on images');
+    
     imageSetSize = numel(imageSet);
 
     data = cell(10000,2);
 
     for i = 1 : imageSetSize
 
+        disp(i);
+        
         % get the image to be evaluated
         image = imageSet{i};
 

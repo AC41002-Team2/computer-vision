@@ -1,6 +1,6 @@
 function [images, labels ] = getImagesFromDirectory(directoryName, imgType)
 
-disp('collecting training data');
+disp('collecting images');
 
 directory = dir(directoryName);
 dirFlags = [directory.isdir];
@@ -27,7 +27,6 @@ for k = 1 : length(subFolders)
             
             disp(subFolders(k).name);
             
-            %%% does not work if diffrernt sizes!!!!!
         	labels = [labels; subFolders(k).name];
             
             file = fullfile(directoryName_, subDir(l).name);
