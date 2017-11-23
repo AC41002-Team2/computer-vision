@@ -60,5 +60,9 @@ function label = Knn(testData, trainingData, k, labels)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % return final value
     label = y(itemp);
+    
+    
+    disp('prediction');
+    disp(label);
 
 end

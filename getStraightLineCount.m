@@ -1,10 +1,11 @@
 function val = getStraightLineCount(img)
     
-    i = 0;
+    i = 3;
 
-    rotI = rgb2gray(img);
+    BW = rgb2gray(img);
     
-    BW = edge(rotI,'log', 0.01);
+    BW = edge(BW,'log', 0.01);
+    
 
     [H,T,R] = hough(BW);
     
@@ -14,7 +15,7 @@ function val = getStraightLineCount(img)
     end
             
     
-    P = houghpeaks(H,20,'threshold',ceil(0.3*max(H(:))));
+    P = houghpeaks(H, 20);
     
     x = T(P(:,2)); y = R(P(:,1));
     
@@ -26,7 +27,7 @@ function val = getStraightLineCount(img)
     %
     
     
-    lines = houghlines(BW,T,R,P,'FillGap',10,'MinLength',30);
+    lines = houghlines(BW,T,R,P);
     
     
     %
@@ -51,11 +52,13 @@ function val = getStraightLineCount(img)
     g = [];
         
     for i = 1: numel(lines)
-        g = [g lines(i).theta];
+        
+        t = lines(i).theta;
+        
+        g = [g t];
     end
 
-    val = numel(g);
-    %val = lines;
+    val = numel(lines);%g;
     
 end
 
